@@ -1,0 +1,20 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import Overskrift from "../components/Overskrift.astro";
+import HeroBackground from "../components/HeroBackground.astro";
+
+import EmployeeSection from "../components/EmployeeSection.astro";
+
+const employeeData = await fetch("https://raw.githubusercontent.com/espi0001/frontend-design/main/resources/json/employees.json").then((res) => res.json());
+---
+
+<MainLayout title="Team">
+  <HeroBackground surface="team" tag="TEAM" headline="The Consultors" />
+
+  <!-- <section>
+    <Overskrift farve="primary" style="secondary" linket="#" buttonProps={{ style: "secondary" }} h2="Meet Our Great Team" tekst="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation.">Book a meeting</Overskrift>
+  </section> -->
+  <EmployeeSection data={employeeData} />
+</MainLayout>
+
+<style></style>

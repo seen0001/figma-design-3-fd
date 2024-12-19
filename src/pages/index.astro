@@ -1,0 +1,26 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroSection from "../components/HeroSection.astro";
+import AndenSection from "../components/AndenSection.astro";
+import ScrollingContainer from "../components/ScrollingContainer.astro";
+import Experience from "../components/Experience.astro";
+import CorevaluesSection from "../components/CorevaluesSection.astro";
+import { cardContent } from "../data/card-content.js";
+const corevalueData = await fetch("https://raw.githubusercontent.com/espi0001/frontend-design/main/resources/json/corevalues.json").then((res) => res.json());
+import ContactUs from "../components/ContactUs.astro";
+---
+
+<MainLayout title="Home">
+  <HeroSection />
+
+  <AndenSection tagProps={{ style: "secondary" }} h2="What To Expect" tekst="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." li1="Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day." li2="Capitalize on low hanging fruit to identify a ballpark value added activity to beta test override the digital.">WE'LL WORK WITH YOU</AndenSection>
+
+  <ScrollingContainer cardContent={cardContent} />
+
+  <Experience />
+
+  <CorevaluesSection data={corevalueData} background="black" buttonProps1={{ style: "tertiary" }} buttonProps2={{ style: "primary" }} />
+
+  <ContactUs />
+</MainLayout>
+<style></style>

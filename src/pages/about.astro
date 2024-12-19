@@ -1,0 +1,31 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import HeroBackground from "../components/HeroBackground.astro";
+import AboutSection1 from "../components/AboutSection1.astro";
+import AboutSection2 from "../components/AboutSection2.astro";
+import Accordion from "../components/Accordion.astro";
+import AboutEmpolyee from "../components/AboutEmpolyee.astro";
+
+import CorevaluesSection from "../components/CorevaluesSection.astro";
+const corevalueData = await fetch("https://raw.githubusercontent.com/espi0001/frontend-design/main/resources/json/corevalues.json").then((res) => res.json());
+
+const employeeData = await fetch("https://raw.githubusercontent.com/espi0001/frontend-design/main/resources/json/employees.json").then((res) => res.json());
+const firstthreeemplloyees = employeeData.slice(0, 3);
+---
+
+<MainLayout title="About">
+  <HeroBackground surface="about" tag="SERVICE" headline="Creative Services For Boost Your Business Growth" />
+  <AboutSection1 />
+  <AboutSection2 />
+
+  <CorevaluesSection data={corevalueData} background="white" tagProps={{ style: "secondary" }} buttonProps1={{ style: "primary" }}>Growing with our Clients</CorevaluesSection>
+
+  <AboutEmpolyee data={firstthreeemplloyees} />
+
+  <Accordion />
+</MainLayout>
+<style>
+  .accordion {
+    display: flex;
+  }
+</style>

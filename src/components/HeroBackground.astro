@@ -1,0 +1,63 @@
+---
+const { surface = "team", tag, headline } = Astro.props;
+---
+
+<section data-surface={surface} class="container full">
+  <div class="content">
+    <div class="content-background">
+      <div class="tag">
+        <p>{tag}</p>
+      </div>
+      <h1>{headline}</h1>
+    </div>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    [data-surface="team"] {
+      --background-image: url("src/assets/team1.avif");
+    }
+
+    [data-surface="about"] {
+      --background-image: url("src/assets/about1.avif");
+    }
+
+    [data-surface="case"] {
+      --background-image: url("src/assets/case1.avif");
+    }
+
+    .full {
+      display: grid;
+      grid-template-columns: subgrid;
+      grid-column: full;
+
+      > * {
+        grid-column: content;
+      }
+    }
+
+    .container {
+      background-image: var(--background-image);
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 9rem 0;
+
+      .content-background {
+        border-radius: 29px;
+        background: rgba(255, 255, 255, 0.85);
+        color: var(--color-primary3);
+        /* backdrop-filter: blur(5.5px); */
+        display: inline-block;
+        padding: 3rem 3.75rem;
+        max-width: 790px;
+        .tag {
+          padding: 0px 15px;
+          background: var(--color-primary1);
+          display: inline-block;
+          border-radius: 20px;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,147 @@
+---
+
+---
+
+<div class="width-button">
+  <button popovertarget="popup" class="loginbtn">Login</button>
+</div>
+
+<div popover id="popup">
+  <h2>Dashboard Login</h2>
+  <form action="/submit-form" method="POST">
+    <input placeholder="Enter Email" type="text" name="name" required />
+
+    <input placeholder="Enter Password" type="email" name="email" required />
+
+    <input class="submit" type="submit" value="Go to dashboard" name="Show Dashboard" />
+  </form>
+</div>
+
+<style>
+  @layer components {
+    [popover]::backdrop {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(16px);
+    }
+    .width-button {
+      width: 125px;
+
+      .loginbtn {
+        background: var(--color-primary1);
+        color: var(--color-primary3);
+        display: inline-block;
+        padding: 16px 37px;
+        transition: all 0.55s ease;
+        border-radius: 42px;
+        align-self: start;
+        border: 2px solid transparent;
+        cursor: pointer;
+        /* transition:
+          background-color 0.3s ease,
+          color 0.3s ease,
+          border-color 0.3s ease; */
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .submit {
+        background: var(--color-primary1);
+        color: var(--color-primary3);
+        width: 200px;
+        margin: 0 auto;
+        font-weight: 600;
+      }
+
+      label {
+        display: flex;
+        width: 382px;
+        padding: 24px 33px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: 54px;
+        border: 1px solid var(--color-card);
+        background: var(--color-secondary2);
+      }
+
+      input {
+        border-radius: 54px;
+        background: var(--color-secondary2);
+        padding: 24px 33px;
+        z-index: 10;
+        width: 400px;
+
+        @media (width < 600px) {
+          width: 300px;
+          margin: 0 auto;
+        }
+      }
+    }
+    @keyframes popoverOpen {
+      0% {
+        opacity: 0;
+        translate: 0 20px;
+      }
+      100% {
+        opacity: 1;
+        translate: 0 0;
+      }
+    }
+    #popup {
+      /* display: none; */
+      min-width: 750px;
+      padding: 40px 60px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      margin: auto;
+      border-radius: 30px;
+      opacity: 0;
+      transition: opacity 1s ease;
+      translate: 0 20px;
+      /* &:popover-open {
+        display: flex;
+      } */
+
+      h2 {
+        color: var(--color-secondary2);
+      }
+
+      @media (width < 600px) {
+        width: 100%;
+        padding: 2rem;
+      }
+    }
+    #popup.open {
+      display: flex; /* Show when class open is added */
+      opacity: 1;
+      animation: popoverOpen 1s forwards;
+      translate: 0 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const loginButton = document.querySelector(".loginbtn");
+    const popover = document.getElementById("popup");
+
+    loginButton.addEventListener("click", () => {
+      popover.classList.toggle("open");
+    });
+
+    // Close popover when clicking outside
+    document.addEventListener("click", (event) => {
+      if (!popover.contains(event.target) && !loginButton.contains(event.target)) {
+        popover.classList.remove("open");
+      }
+    });
+  });
+</script>

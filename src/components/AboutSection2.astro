@@ -1,0 +1,61 @@
+---
+
+---
+
+<section class="container">
+  <dl>
+    <div>
+      <dt>1128+</dt>
+      <dd>Successful Work</dd>
+    </div>
+    <div>
+      <dt>908+</dt>
+      <dd>Team member</dd>
+    </div>
+    <div>
+      <dt>258+</dt>
+      <dd>Happy Customers</dd>
+    </div>
+    <div>
+      <dt>564+</dt>
+      <dd>Creative Idea</dd>
+    </div>
+  </dl>
+</section>
+
+<style>
+  @layer components {
+    .container {
+      grid-column: full;
+      display: grid;
+      grid-template-rows: var(--layout-rows2);
+      gap: 2rem;
+      color: var(--color-primary3);
+      @media (width < 600px) {
+        display: block;
+      }
+
+      dl {
+        color: var(--color-primary3);
+        display: flex;
+        justify-content: center;
+        gap: 8rem;
+
+        @media (width < 600px) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1rem;
+          justify-items: center;
+        }
+
+        dt {
+          font-weight: 700;
+          font-size: var(--font-35-50);
+        }
+        dd {
+          font-size: var(--font-20-25);
+        }
+      }
+    }
+  }
+</style>

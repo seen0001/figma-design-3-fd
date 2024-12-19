@@ -1,0 +1,26 @@
+---
+import { Icon } from "astro-icon/components";
+const { iconname, h6, tekst } = Astro.props;
+---
+
+<article>
+  <Icon name={iconname} />
+  <div>
+    <p>{tekst}</p>
+    <h6>{h6}</h6>
+  </div>
+</article>
+
+<style>
+  @layer components {
+    article {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      svg {
+        width: 52px;
+      }
+    }
+  }
+</style>

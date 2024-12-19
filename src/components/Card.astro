@@ -1,0 +1,44 @@
+---
+import Button from "./Button.astro";
+const { style, h6, tekst, buttonProps } = Astro.props;
+---
+
+<div class={style}>
+  <h6>{h6}</h6>
+  <p>{tekst}</p>
+
+  <Button {...buttonProps}><slot /></Button>
+</div>
+
+<style>
+  @layer components {
+    div {
+      padding: var(--space-l);
+      display: flex;
+      flex-direction: column;
+      /* border-radius: 20px; */
+      border-radius: var(--space-s);
+      /* backdrop-filter: blur(32px); */
+      backdrop-filter: blur(var(--space-m));
+      h6 {
+        margin-bottom: var(--space-2xs);
+        color: var(--color-secondary2);
+      }
+      p {
+        margin-bottom: var(--space-l);
+      }
+    }
+
+    .primary {
+      background: rgba(38.25, 38.25, 38.25, 0.9);
+      border: 1px rgba(255, 255, 255, 0.2);
+      color: var(--color-secondary2);
+    }
+
+    .secondary {
+      background: var(--color-secondary1);
+      border: 1px var(--color-card);
+      color: var(--color-primary3);
+    }
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+const { percent, percenttag } = Astro.props;
+---
+
+<div class="parent" style={`--percent: 0%;`} data-final-percent={percent}>
+  <div class="child"></div>
+  <span>0%</span>
+</div>
+<style>
+  @layer component {
+    .parent {
+      --offset-pos: 5px;
+      border: var(--offset-pos) solid transparent;
+      background:
+        radial-gradient(circle at 50% calc(var(--offset-pos) / 2), var(--color-secondary2) calc(var(--offset-pos) / 2), transparent 0) border-box,
+        linear-gradient(var(--color-primary1), var(--color-primary1)) padding-box,
+        conic-gradient(var(--color-secondary2) var(--percent), rgba(128, 128, 128, 0.517) 0) border-box;
+
+      position: relative;
+      aspect-ratio: 1;
+      width: 185px;
+      border-radius: 1e5px;
+      /* margin: var(--space-xs-s); */
+      transition: --percent 1s ease-out;
+
+      @media (min-width: 601px) {
+        margin: var(--space-xs-s);
+      }
+
+      @media (max-width: 600px) {
+        width: 150px;
+      }
+    }
+    .parent.animate {
+      animation: animatePercent 3s forwards;
+    }
+
+    .child {
+      aspect-ratio: 1;
+      border-radius: 99px;
+      width: 30px;
+      background: var(--color-primary3);
+      border: 5px solid var(--color-secondary2);
+      position: absolute;
+      offset-path: border-box;
+      offset-distance: var(--percent);
+      offset-anchor: 50% calc(50% - var(--offset-pos) / 2);
+
+      @media (width < 600px) {
+        width: 20px;
+        border: 3px solid var(--color-secondary2);
+      }
+    }
+    span {
+      align-self: center;
+      justify-self: center;
+      font-size: 45px;
+      font-weight: 600;
+      transition: all 1s ease;
+    }
+
+    @property --percent {
+      syntax: "<percentage>";
+      inherits: true;
+      initial-value: 0%;
+    }
+
+    @keyframes animatePercent {
+      0% {
+        --percent: 0%;
+      }
+      100% {
+        --percent: var(--final-percent); /* Use dynamically set final percentage */
+      }
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const targets = document.querySelectorAll(".parent");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const finalPercent = entry.target.getAttribute("data-final-percent");
+            entry.target.style.setProperty("--final-percent", finalPercent);
+            entry.target.classList.add("animate");
+            animateNumber(entry.target, finalPercent);
+            observer.unobserve(entry.target); // Stop observing after animation runs once
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the element is visible
+    );
+
+    targets.forEach((target) => observer.observe(target));
+
+    function animateNumber(element, finalPercent) {
+      const span = element.querySelector("span");
+      const targetValue = parseInt(finalPercent, 10);
+      let currentValue = 0;
+
+      const interval = setInterval(() => {
+        if (currentValue >= targetValue) {
+          clearInterval(interval);
+          span.textContent = `${targetValue}%`;
+        } else {
+          currentValue++;
+          span.textContent = `${currentValue}%`;
+        }
+      }, 30); // Adjust the speed of number increment
+    }
+  });
+</script>

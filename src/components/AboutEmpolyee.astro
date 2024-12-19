@@ -1,0 +1,50 @@
+---
+import EmployeeCard from "./EmployeeCard.astro";
+const { data } = Astro.props;
+
+import Tag from "./Tag.astro";
+---
+
+<section class="employees-wrapper">
+  <div class="del1">
+    <Tag style="secondary">Our team</Tag>
+    <h2>We champion the bold to achieve the extraordinary</h2>
+    <p>Ippsum is the result of synergy between our teams and our customers. Our company culture is focused on excellent productivity, customer satisfaction, respect for team.</p>
+  </div>
+  <div class="del2">
+    {data.map((employee) => <EmployeeCard employee={employee} />)}
+  </div>
+</section>
+<style>
+  @layer components {
+    .employees-wrapper {
+      display: grid;
+      gap: 40px;
+      grid-column: content;
+      color: var(--color-primary3);
+      padding: 5rem 0;
+      @media (width < 600px) {
+        display: block;
+      }
+
+      .del1 {
+        display: flex;
+        flex-direction: column;
+
+        h2 {
+          max-width: 25ch;
+          font-weight: 700;
+        }
+      }
+      .del2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 80px;
+        column-gap: 50px;
+        @media (width < 600px) {
+          display: block;
+        }
+      }
+    }
+  }
+</style>

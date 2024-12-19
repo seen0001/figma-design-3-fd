@@ -1,0 +1,85 @@
+---
+import { Image } from "astro:assets";
+import home1 from "../assets/home1.jpg";
+import Tag from "./Tag.astro";
+
+const { h2, tekst, tagProps, li1, li2 } = Astro.props;
+---
+
+<section class="container">
+  <div class="del1">
+    <figure class="figure-version2">
+      <Image alt="" src={home1} />
+    </figure>
+  </div>
+  <div class="del2">
+    <div>
+      <Tag {...tagProps}><slot /></Tag>
+      <h2>{h2}</h2>
+      <p>{tekst}</p>
+    </div>
+    <ul>
+      <li>{li1}</li>
+      <li>{li2}</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  @layer components {
+    .container {
+      grid-column: content;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-rows: var(--layout-rows3);
+      color: var(--color-primary3);
+      gap: var(--space-m);
+      padding: var(--space-2xl) 0;
+      @media (max-width: 600px) {
+        padding: var(--space-m) 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .del1 {
+        grid-row: 2 / -1;
+      }
+      .del2 {
+        grid-row: 1 / 3;
+
+        div {
+          display: flex;
+          flex-direction: column;
+
+          p {
+            margin-bottom: var(--space-m);
+          }
+        }
+
+        ul {
+          display: grid;
+          gap: var(--space-s);
+
+          li {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap: var(--space-xs);
+            color: var(--color-text);
+            max-width: 47ch;
+            &:before {
+              content: "";
+              width: 1.6rem;
+              aspect-ratio: 1;
+              background: var(--checkmark-icon) 50% 50% / contain no-repeat;
+            }
+          }
+        }
+      }
+    }
+
+    [data-icon="balance"] {
+      width: 24px;
+    }
+  }
+</style>

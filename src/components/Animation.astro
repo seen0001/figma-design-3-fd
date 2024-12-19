@@ -1,0 +1,60 @@
+---
+const { style, linket } = Astro.props;
+---
+
+<div class="parent" style="--percent: 85%">
+  <div class="child"></div>
+</div>
+
+<div class="parent" style="--percent: 95%">
+  <div class="child"></div>
+</div>
+
+<div class="parent" style="--percent: 90%">
+  <div class="child"></div>
+</div>
+
+<style>
+  @layer components {
+    @property --percent {
+      syntax: "<percentage>";
+      inherits: true;
+      initial-value: 0%;
+    }
+
+    .parent {
+      --offset-pos: 5px;
+      /*animation: --pie 3s linear infinite;*/
+      border: var(--offset-pos) solid transparent;
+      background:
+        linear-gradient(#ffcc4a, #ffcc4aff) padding-box,
+        conic-gradient(white var(--percent), #daae3c 0) border-box;
+      position: relative;
+
+      .child {
+        aspect-ratio: 1;
+        border-radius: 99px;
+        width: 20px;
+        background: var(--color-primary3);
+        position: absolute;
+        offset-path: border-box;
+        offset-distance: var(--percent);
+        offset-anchor: 50% calc(50% - var(--offset-pos) / 2);
+      }
+    }
+
+    @keyframes --pie {
+      to {
+        --percent: 100%;
+      }
+    }
+
+    .parent {
+      aspect-ratio: 1;
+      width: 150px;
+      height: 150px;
+      border-radius: 1e5px;
+      margin-inline: auto;
+    }
+  }
+</style>

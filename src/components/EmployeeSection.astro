@@ -1,0 +1,45 @@
+---
+import EmployeeCard from "./EmployeeCard.astro";
+const { data } = Astro.props;
+
+import Button from "./Button.astro";
+---
+
+<section class="employees-wrapper">
+  <div class="top">
+    <div class="text">
+      <h1>Meet Our Great Team</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. enim ad minim veniam, quis nostrud exercitation.</p>
+    </div>
+    <Button style="primary">Join our team</Button>
+  </div>
+  <section class="employees">
+    {data.map((employee) => <EmployeeCard employee={employee} />)}
+  </section>
+</section>
+<style>
+  @layer components {
+    .employees-wrapper {
+      display: grid;
+      gap: 40px;
+      grid-column: content;
+      .top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: var(--color-primary3);
+        .text {
+          max-width: 50%;
+          display: grid;
+          gap: 16px;
+        }
+      }
+      .employees {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 80px;
+        column-gap: 50px;
+      }
+    }
+  }
+</style>

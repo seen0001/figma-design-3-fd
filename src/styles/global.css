@@ -1,0 +1,148 @@
+@layer reset, global, components, overrides;
+
+@import url("./reset.css") layer(reset);
+@import url("./overrides.css") layer(overrides);
+
+@layer global {
+  :root {
+    --font-35-50: clamp(2.1875rem, 1.8614rem + 1.6304vw, 3.125rem);
+    --font-30-45: clamp(1.875rem, 1.5489rem + 1.6304vw, 2.8125rem);
+    --font-25-40: clamp(1.5625rem, 1.2364rem + 1.6304vw, 2.5rem);
+    --font-20-35: clamp(1.25rem, 0.9239rem + 1.6304vw, 2.1875rem);
+    --font-20-30: clamp(1.25rem, 1.0326rem + 1.087vw, 1.875rem);
+    --font-20-25: clamp(1.25rem, 1.1413rem + 0.5435vw, 1.5625rem);
+
+    /* Space 3xs: 5px → 5px */
+    --space-3xs: clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem);
+    /* Space 2xs: 9px → 10px */
+    --space-2xs: clamp(0.5625rem, 0.5408rem + 0.1087vw, 0.625rem);
+    /* Space xs: 14px → 15px */
+    --space-xs: clamp(0.875rem, 0.8533rem + 0.1087vw, 0.9375rem);
+    /* Space s: 18px → 20px */
+    --space-s: clamp(1.125rem, 1.0815rem + 0.2174vw, 1.25rem);
+    /* Space m: 27px → 30px */
+    --space-m: clamp(1.6875rem, 1.6223rem + 0.3261vw, 1.875rem);
+    /* Space l: 36px → 40px */
+    --space-l: clamp(2.25rem, 2.163rem + 0.4348vw, 2.5rem);
+    /* Space xl: 54px → 60px */
+    --space-xl: clamp(3.375rem, 3.2446rem + 0.6522vw, 3.75rem);
+    /* Space 2xl: 72px → 80px */
+    --space-2xl: clamp(4.5rem, 4.3261rem + 0.8696vw, 5rem);
+    /* Space 3xl: 108px → 120px */
+    --space-3xl: clamp(6.75rem, 6.4891rem + 1.3043vw, 7.5rem);
+
+    /* One-up pairs */
+    /* Space 3xs-2xs: 5px → 10px */
+    --space-3xs-2xs: clamp(0.3125rem, 0.2038rem + 0.5435vw, 0.625rem);
+    /* Space 2xs-xs: 9px → 15px */
+    --space-2xs-xs: clamp(0.5625rem, 0.4321rem + 0.6522vw, 0.9375rem);
+    /* Space xs-s: 14px → 20px */
+    --space-xs-s: clamp(0.875rem, 0.7446rem + 0.6522vw, 1.25rem);
+    /* Space s-m: 18px → 30px */
+    --space-s-m: clamp(1.125rem, 0.8641rem + 1.3043vw, 1.875rem);
+    /* Space m-l: 27px → 40px */
+    --space-m-l: clamp(1.6875rem, 1.4049rem + 1.413vw, 2.5rem);
+    /* Space l-xl: 36px → 60px */
+    --space-l-xl: clamp(2.25rem, 1.7283rem + 2.6087vw, 3.75rem);
+    /* Space xl-2xl: 54px → 80px */
+    --space-xl-2xl: clamp(3.375rem, 2.8098rem + 2.8261vw, 5rem);
+    /* Space 2xl-3xl: 72px → 120px */
+    --space-2xl-3xl: clamp(4.5rem, 3.4565rem + 5.2174vw, 7.5rem);
+
+    /* Custom pairs */
+    /* Space s-l: 18px → 40px */
+    --space-s-l: clamp(1.125rem, 0.6467rem + 2.3913vw, 2.5rem);
+
+    --color-primary1: #ffcc4a;
+    --color-primary2: #4eaf4e;
+    --color-primary3: #181818;
+    --color-secondary1: #f5f5f5;
+    --color-secondary2: #ffffff;
+    --color-text: #595566;
+    --color-card: #ebebeb;
+    --color-faq: #dadada;
+    --color-navigation: #1b1b1b 91%;
+
+    --font-weight-400: 400;
+    --font-weight-500: 500;
+    --font-weight-700: 700;
+
+    --content-width: 50rem;
+    --card-padding: 2.75rem 2.1875rem;
+    --card-gap: 1rem;
+    --card-border-radius: 8px;
+
+    line-height: 1.5;
+
+    font-family: "Lato", sans-serif;
+    --checkmark-icon: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><path fill="%234EAF4E" d="M176.49 95.51a12 12 0 0 1 0 17l-56 56a12 12 0 0 1-17 0l-24-24a12 12 0 1 1 17-17L112 143l47.51-47.52a12 12 0 0 1 16.98.03M236 128A108 108 0 1 1 128 20a108.12 108.12 0 0 1 108 108m-24 0a84 84 0 1 0-84 84a84.09 84.09 0 0 0 84-84"/></svg>');
+    --square-pattern: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="red"><path d="M7.47662 4.02206C6.50635 3.05178 5.53232 2.07774 4.56205 1.10745C4.28482 0.83023 3.80905 0.83023 3.53183 1.10745C2.56155 2.07774 1.59128 3.04803 0.621002 4.02206C0.343781 4.29929 0.343781 4.77506 0.621002 5.05229C1.59128 6.02258 2.5653 6.99661 3.53558 7.9669C3.8128 8.24412 4.28857 8.24412 4.56579 7.9669C5.53607 6.99661 6.51009 6.02258 7.48037 5.05229C7.63022 4.90244 7.69016 4.73011 7.69016 4.56527C7.69016 4.55403 7.69016 4.54654 7.69016 4.5353C7.69016 4.52781 7.69016 4.51657 7.69016 4.50908C7.69016 4.34424 7.63022 4.17191 7.47662 4.02206ZM4.04881 6.41968C3.41944 5.79031 2.79382 5.16468 2.16445 4.5353C2.79382 3.90593 3.41944 3.2803 4.04881 2.65092C4.67818 3.2803 5.3038 3.90593 5.93317 4.5353C5.3038 5.16468 4.67818 5.79031 4.04881 6.41968Z"/></svg>');
+
+    --gap: clamp(1rem, 6vw, 3rem);
+    --full: minmax(var(--gap), 1fr);
+    --content: min(75rem, 100% - var(--gap) * 2);
+
+    --layout-grid: [full-start] 1fr [content] minmax(0, 1200px) 1fr [full-end];
+    --layout-grid2: [full-start] 1fr [content] minmax(0, 600px) minmax(0, 600px) 1fr [full-end];
+    --layout-rows2: 1fr auto auto;
+    --layout-rows3: auto 1fr auto;
+  }
+
+  body {
+    list-style: none;
+    background-color: var(--color-secondary02);
+    font-size: var(--step-0);
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: var(--layout-grid);
+    font-weight: 400;
+  }
+  img {
+    border-radius: 30px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Cabin", sans-serif;
+    color: var(--color-primary3);
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  p {
+    font-size: 1rem;
+    /* color: var(--color-text); */
+  }
+
+  h1 {
+    font-size: var(--font-35-50);
+  }
+  h2 {
+    font-size: var(--font-30-45);
+    margin-bottom: var(--space-xs);
+  }
+  h3 {
+    font-size: var(--font-25-40);
+  }
+  h4 {
+    font-size: var(--font-20-35);
+  }
+  h5 {
+    font-size: var(--font-20-30);
+  }
+  h6 {
+    font-size: var(--font-20-25);
+    margin-bottom: var(--space-2xs);
+  }
+
+  a {
+    cursor: pointer;
+    transition: all 0.55s ease;
+  }
+}

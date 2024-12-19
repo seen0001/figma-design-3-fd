@@ -1,0 +1,62 @@
+---
+import { Image } from "astro:assets";
+import case2 from "../assets/case2.avif";
+import Button from "./Button.astro";
+---
+
+<section class="container">
+  <Image alt="" src={case2} />
+  <div class="kasse">
+    <div>
+      <h6>Case Name</h6>
+      <p>Taxes & Efficiency</p>
+    </div>
+    <div>
+      <h6>Category</h6>
+      <p>Business</p>
+    </div>
+    <div>
+      <h6>Date</h6>
+      <p>27th September 2022</p>
+    </div>
+
+    <Button style="secondary">Live Preview</Button>
+  </div>
+</section>
+<style>
+  @layer components {
+    .container {
+      grid-column: full;
+      display: grid;
+      grid-template-columns: var(--layout-grid2);
+      grid-template-rows: var(--layout-rows2);
+      color: var(--color-primary3);
+      padding: 5rem 0;
+
+      @media (width < 600px) {
+        display: block;
+      }
+
+      > * {
+        grid-column: 2;
+      }
+
+      img {
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+      }
+      .kasse {
+        display: flex;
+        justify-content: space-between;
+        background: var(--color-primary3);
+        color: var(--color-secondary2);
+        border-radius: 30px;
+        padding: 53px 60px;
+
+        grid-column: 2 / -2;
+        grid-row: 2 / 4;
+        gap: 20px;
+      }
+    }
+  }
+</style>

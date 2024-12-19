@@ -1,0 +1,154 @@
+---
+import Button from "./Button.astro";
+import Tag from "./Tag.astro";
+import { Icon } from "astro-icon/components";
+
+const { data } = Astro.props;
+const { buttonProps1, background } = Astro.props;
+const { title, subtitle, button, values } = data;
+---
+
+<section class={`${background} container`}>
+  <article>
+    <div>
+      <div class="text">
+        <Tag style="tertiary">Growing with our Clients</Tag>
+        <h2>{title}</h2>
+      </div>
+      <div>
+        <p>{subtitle}</p>
+        <Button class="knap" {...buttonProps1} linket={button.link}>{button.text}</Button>
+      </div>
+    </div>
+
+    <ul>
+      {
+        values.map((corevalue) => (
+          <li>
+            <Icon name={corevalue.icon} />
+            <div>
+              <h6>{corevalue.title}</h6>
+              <p>{corevalue.description}</p>
+            </div>
+            <a href={corevalue.link.url}>{corevalue.link.text} &rarr;</a>
+          </li>
+        ))
+      }
+    </ul>
+  </article>
+</section>
+
+<style>
+  @layer components {
+    .container {
+      grid-column: full;
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: var(--space-m);
+      padding: var(--space-2xl) 0;
+      @media (max-width: 600px) {
+        padding: var(--space-m) 0;
+      }
+      > * {
+        grid-column: content;
+      }
+      article {
+        display: flex;
+        flex-direction: column;
+        @media (max-width: 600px) {
+          flex-direction: column;
+        }
+
+        > div:first-of-type {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: var(--space-m-l);
+          @media (width < 600px) {
+            div {
+              flex-direction: column;
+            }
+            p {
+              margin-bottom: var(--space-xs-s);
+            }
+          }
+          div {
+            display: flex;
+            justify-content: space-between;
+          }
+          .text {
+            display: flex;
+            flex-direction: column;
+            max-width: 50%;
+            @media (width < 600px) {
+              max-width: none;
+            }
+          }
+          .icon {
+            width: 100px;
+          }
+        }
+      }
+
+      ul {
+        display: flex;
+        justify-content: space-between;
+        /* gap: 2.25rem; */
+        /* overflow-x: auto; */
+        margin-top: 0;
+
+        @media (width < 600px) {
+          display: grid;
+          grid-template-columns: auto auto;
+          gap: var(--space-xs-s);
+        }
+
+        li {
+          flex-basis: min(272px, 90%);
+          flex-shrink: 0;
+          background: var(--color-card);
+          color: var(--color-text);
+          border-radius: 8px;
+          padding: 2.25rem 1.44rem;
+          display: grid;
+          gap: var(--space-xs-s);
+
+          @media (min < 600px) {
+            align-self: start;
+          }
+          h6 {
+            font-weight: 700;
+            font-size: 1.25em;
+            margin-bottom: var(--space-2xs-xs);
+          }
+
+          svg {
+            width: 53px;
+          }
+
+          a {
+            color: var(--color-primary3);
+            font-weight: 600;
+          }
+        }
+        .icon-card {
+          /* width: 40px; */
+          margin-bottom: 14px;
+        }
+      }
+    }
+
+    .black {
+      background: var(--color-primary3);
+      color: var(--color-secondary2);
+
+      h2 {
+        color: var(--color-secondary2);
+      }
+    }
+
+    .white {
+      background: var(--color-secondary1);
+      color: var(--color-primary3);
+    }
+  }
+</style>

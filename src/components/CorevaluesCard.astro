@@ -1,0 +1,42 @@
+---
+// import type { ImageMetadata } from "astro";
+import { Icon } from "astro-icon/components";
+
+const { corevalue } = Astro.props;
+const { icon, title, description, link, text } = corevalue;
+
+// const images = import.meta.glob<{ default: ImageMetadata }>("/src/icons/*.{jpeg,jpg,png,gif}");
+// if (!images[img]) throw new Error(`"${img}" does not exist in glob: "src/icons/*.{jpeg,jpg,png,gif}"`);
+---
+
+<ul role="list">
+  <li>
+    <img src={icon} alt="" />
+    <h5>{title}</h5>
+    <p>{description}</p>
+    <a href={link}>{text}</a>
+  </li>
+</ul>
+<style>
+  @layer components {
+    article {
+      background: var(--color-secondary1);
+      color: var(--color-primary3);
+      text-align: center;
+      padding: 36px 23px;
+      border-radius: 20px;
+      p {
+        color: var(--color-text);
+      }
+    }
+    img {
+      border-radius: 20px;
+    }
+
+    .iconer {
+      display: flex;
+      gap: 29px;
+      justify-content: center;
+    }
+  }
+</style>

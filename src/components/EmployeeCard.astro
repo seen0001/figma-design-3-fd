@@ -1,0 +1,104 @@
+---
+import type { ImageMetadata } from "astro";
+import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
+
+const { employee } = Astro.props;
+const { img, name, title, description, slug, social_links } = employee;
+
+const images = import.meta.glob<{ default: ImageMetadata }>("/src/assets/images/*.{jpeg,jpg,png,gif}");
+if (!images[img]) throw new Error(`"${img}" does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif}"`);
+---
+
+<article>
+  <a class="card-wrapper" href={`/${slug}`}>
+    <div class="image-title">
+      <Image src={images[img]()} alt={name} width={100} />
+      <p class="employees-title">{title}</p>
+    </div>
+  </a>
+  <div class="text">
+    <h5 class="employees-name">{name}</h5>
+    <p class="employees-content">{description}</p>
+  </div>
+  <div class="employee-icon">
+    {
+      social_links.instagram && (
+        <a href={social_links.instagram} aria-label="Instagram">
+          <Icon name="instagram" />
+        </a>
+      )
+    }
+    {
+      social_links.facebook && (
+        <a href={social_links.facebook} aria-label="Facebook">
+          <Icon name="facebook" />
+        </a>
+      )
+    }
+    {
+      social_links.twitter && (
+        <a href={social_links.twitter} aria-label="Twitter">
+          <Icon name="twitter" />
+        </a>
+      )
+    }
+  </div>
+</article>
+
+<style>
+  @layer components {
+    article {
+      display: grid;
+      gap: 25px;
+      .card-wrapper {
+        .image-title {
+          position: relative;
+          img {
+            border-radius: 20px;
+          }
+        }
+      }
+      &:first-child .employees-title {
+        background: var(--color-primary1);
+        color: var(--color-primary3);
+      }
+
+      .employees-title {
+        padding: 4px 20px;
+        position: absolute;
+        background: var(--color-primary3);
+        border-radius: 100px;
+        bottom: 20px;
+        right: 20px;
+        color: var(--color-secondary2);
+      }
+
+      .text {
+        text-align: center;
+        display: grid;
+        gap: 8px;
+
+        color: var(--color-primary3);
+      }
+
+      .employee-icon {
+        display: flex;
+        gap: 2rem;
+        margin: 0 auto;
+        svg {
+          width: 24px;
+        }
+      }
+      /* .iconer {
+        display: flex;
+        gap: 29px;
+        justify-content: center;
+      }
+      svg {
+        width: 24px;
+        height: 24px;
+      } */
+    }
+  }
+</style>

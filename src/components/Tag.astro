@@ -1,0 +1,36 @@
+---
+const { style, place } = Astro.props;
+---
+
+<p class={`${style} ${place}`}><slot /></p>
+
+<style>
+  @layer components {
+    p {
+      padding: 0 19px;
+      border-radius: 20px;
+      align-self: start;
+      justify-content: start;
+      text-transform: uppercase;
+      margin-bottom: var(--space-xs);
+    }
+    .primary {
+      background: var(--color-primary2);
+      color: var(--color-secondary2);
+    }
+
+    .secondary {
+      background: var(--color-primary1);
+      color: var(--color-primary3);
+    }
+
+    .tertiary {
+      background: var(--color-secondary2);
+      color: var(--color-primary3);
+    }
+
+    .center {
+      align-self: center; /* This should now work correctly */
+    }
+  }
+</style>

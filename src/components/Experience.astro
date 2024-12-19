@@ -1,0 +1,83 @@
+---
+import Tag from "./Tag.astro";
+import PieChart from "./PieChart.astro";
+---
+
+<section class="container">
+  <article>
+    <div>
+      <Tag style="tertiary">EXPERIENCE</Tag>
+
+      <h2>More than 25 years of experience</h2>
+      <p>3000+ our clients are insured around the World</p>
+    </div>
+    <div>
+      <div>
+        <PieChart percent="85%" percenttag="85%" />
+        <h6>Consistency</h6>
+      </div>
+      <div>
+        <PieChart percent="95%" percenttag="95%" />
+        <h6>Improvement</h6>
+      </div>
+      <div>
+        <PieChart percent="90%" percenttag="90%" />
+        <h6>Branching</h6>
+      </div>
+    </div>
+  </article>
+</section>
+<style>
+  @layer components {
+    .container {
+      grid-column: full;
+      display: grid;
+      grid-template-columns: subgrid;
+      background: var(--color-primary1);
+      padding: var(--space-2xl) 0;
+
+      @media (max-width: 600px) {
+        padding: var(--space-m) 0;
+      }
+
+      > * {
+        grid-column: content;
+      }
+
+      article {
+        display: flex;
+        justify-content: space-between;
+
+        @media (max-width: 600px) {
+          flex-direction: column;
+        }
+
+        > div:first-of-type {
+          display: flex;
+          flex-direction: column;
+          @media (max-width: 600px) {
+            margin-bottom: var(--space-m);
+          }
+        }
+        > div ~ div {
+          display: flex;
+          justify-content: space-between;
+
+          @media (min-width: 601px) {
+            gap: var(--space-s);
+          }
+          @media (max-width: 600px) {
+            margin-bottom: var(--space-m);
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: var(--space-s);
+          }
+          div {
+            display: grid;
+            justify-items: center;
+          }
+        }
+      }
+    }
+  }
+</style>

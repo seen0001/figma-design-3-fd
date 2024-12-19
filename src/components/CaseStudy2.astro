@@ -1,0 +1,51 @@
+---
+import { Image } from "astro:assets";
+import case3 from "../assets/case3.avif";
+---
+
+<section class="container">
+  <div>
+    <h3>Project Overview</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+  </div>
+  <ul>
+    <li>It brings the right people together with all the right information and tools to get work done</li>
+    <li>It brings the right people together with all the right information and tools to get work done</li>
+    <li>It brings the right people together with all the right information and tools to get work done</li>
+    <li>It brings the right people together with all the right information and tools to get work done</li>
+  </ul>
+
+  <div>
+    <h5>Storyboard</h5>
+    <p>Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service. Objectively innovate empowered manufactured products whereas parallel platforms. Holistically predominate extensible testing procedures for reliable supply chains.</p>
+    <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products completely pursue scalable customer service.</p>
+  </div>
+  <Image alt="" src={case3} />
+  <div>
+    <h5>Project result</h5>
+    <p>Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas. Dynamically innovate resource-leveling customer service for state of the art customer service. Objectively innovate empowered manufactured products whereas parallel platforms. Holistically predominate extensible testing procedures for reliable supply chains.</p>
+    <p>Proactively envisioned multimedia based expertise and cross-media growth strategies. Seamlessly visualize quality intellectual capital without superior collaboration and idea-sharing. Holistically pontificate installed base portals after maintainable products completely pursue scalable customer service.</p>
+  </div>
+  <article></article>
+</section>
+<style>
+  @layer components {
+    .container {
+      grid-column: full;
+      display: grid;
+      grid-template-columns: var(--layout-grid2);
+      grid-template-rows: var(--layout-rows2);
+      color: var(--color-primary3);
+      padding: 5rem 0;
+
+      margin: 0;
+      @media (width < 600px) {
+        display: block;
+      }
+
+      > * {
+        grid-column: 2;
+      }
+    }
+  }
+</style>
