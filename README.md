@@ -1,47 +1,13 @@
-# Astro Starter Kit: Minimal
+# Kort refleksion over projektet:
 
-```sh
-npm create astro@latest -- --template minimal
-```
+I implementeringen af Figma-designet valgte jeg at fokusere på en velstruktureret CSS-arkitektur og komponentbaseret udvikling. Min tilgang med CSS nesting har givet mig mulighed for at holde stylingen velorganiseret og vedligeholdelsesvenlig. Det var særligt udfordrende at strukturere de mere komplekse komponenter som HeroSection og Navigation, men ved at bruge nestede selektorer lykkedes det mig at skabe en overskuelig hierarkisk struktur, hvor koden er så clean, som vi nu kan gøre det indtil videre.
+Et eksempel på en nyere lært løsning er mit system af custom properties. I global.css etablerede jeg et omfattende sæt variabler for spacing, typografi og farver. Særligt vores nyligt lærte brug af clamp() til responsive størrelser har vist sig meget effektiv. For eksempel definerede jeg fonte sådan her: --font-35-50: clamp(2.1875rem, 1.8614rem + 1.6304vw, 3.125rem);, hvilket gav mig flydende typografi uden behov for mange breakpoints.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+## Udfordringer
+I udviklingen af komponenter udnyttede jeg Astros logikker. En af de mere komplekse implementeringer var EmployeeCard.astro, hvor jeg håndterede billeder og sociale medier dynamisk gennem props og betingede renderinger. Det var udfordrende at få det hele til at spille sammen, men resultatet blev fleksibelt og genbrugeligt.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Noget anden der har udfordret mig har været klassenavngivningen, da jeg kan have svært ved at huske at gøre disse navne konkrete nok.
+Nogle steder endte jeg med at bruge meget beskrivende navne som "newsletter-section", mens andre steder blev mere generiske som "container". Det er helt klart et område, jeg vil forbedre i fremtiden.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Min største tekniske udfordring var dog implementeringen af PieChart-komponenten. Her kombinerede jeg custom properties med JavaScript for at skabe animerede datavisualiseringer.
+For responsiviteten valgte jeg primært at arbejde med media queries og fleksible grid-layouts. Dog blev resultatet ikke fuldendt, og dette vil også kunne forbedres.
